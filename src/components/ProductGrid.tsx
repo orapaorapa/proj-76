@@ -65,7 +65,66 @@ const ProductGrid = () => {
         dimensions: '6.51 × 3.97',
       },
     },
-    // Add more sample products here
+    {
+      id: '2',
+      name: 'Oval 1.50ct D IF EX EX None',
+      image: '/placeholder.svg',
+      price: 4250.00,
+      specs: {
+        clarity: 'IF',
+        color: 'D',
+        cut: 'Excellent',
+        dimensions: '7.21 × 4.15',
+      },
+    },
+    {
+      id: '3',
+      name: 'Princess 2.01ct G VS2 VG VG Faint',
+      image: '/placeholder.svg',
+      price: 3150.75,
+      specs: {
+        clarity: 'VS2',
+        color: 'G',
+        cut: 'Very Good',
+        dimensions: '6.89 × 4.22',
+      },
+    },
+    {
+      id: '4',
+      name: 'Pear 1.25ct E VVS1 EX EX None',
+      image: '/placeholder.svg',
+      price: 2890.60,
+      specs: {
+        clarity: 'VVS1',
+        color: 'E',
+        cut: 'Excellent',
+        dimensions: '7.02 × 4.11',
+      },
+    },
+    {
+      id: '5',
+      name: 'Emerald 1.75ct F VS1 EX EX Faint',
+      image: '/placeholder.svg',
+      price: 3475.90,
+      specs: {
+        clarity: 'VS1',
+        color: 'F',
+        cut: 'Excellent',
+        dimensions: '7.15 × 4.08',
+      },
+    },
+    {
+      id: '6',
+      name: 'Cushion 1.30ct I VVS2 VG EX None',
+      image: '/placeholder.svg',
+      price: 2250.30,
+      specs: {
+        clarity: 'VVS2',
+        color: 'I',
+        cut: 'Very Good',
+        dimensions: '6.75 × 4.01',
+      },
+    }
   ];
 
   return (
