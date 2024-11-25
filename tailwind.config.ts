@@ -12,7 +12,7 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
         "2xl": "1400px",
       },
@@ -27,10 +27,12 @@ export default {
         primary: {
           DEFAULT: "#646CFF",
           foreground: "#FFFFFF",
+          hover: "#4F56CC",
         },
         secondary: {
           DEFAULT: "#E9ECEF",
           foreground: "#1A1A1A",
+          hover: "#D1D5DB",
         },
       },
       keyframes: {

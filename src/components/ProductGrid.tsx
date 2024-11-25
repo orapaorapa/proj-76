@@ -21,28 +21,28 @@ const ProductCard = ({ product }: { product: Product }) => {
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover rounded-t-lg"
+          className="w-full h-32 object-cover rounded-t-lg"
         />
-        <div className="absolute top-2 right-2 space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <Heart className="h-4 w-4" />
+        <div className="absolute top-2 right-2 space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button variant="secondary" size="icon" className="rounded-full w-8 h-8">
+            <Heart className="h-3 w-3" />
           </Button>
-          <Button variant="secondary" size="icon" className="rounded-full">
-            <Share2 className="h-4 w-4" />
+          <Button variant="secondary" size="icon" className="rounded-full w-8 h-8">
+            <Share2 className="h-3 w-3" />
           </Button>
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="font-semibold mb-2">{product.name}</h3>
-        <div className="text-sm text-gray-600 space-y-1">
+      <div className="p-2">
+        <h3 className="font-semibold text-xs mb-1">{product.name}</h3>
+        <div className="text-xs text-gray-600 space-y-0.5">
           <p>Clarté: {product.specs.clarity}</p>
           <p>Couleur: {product.specs.color}</p>
           <p>Taille: {product.specs.cut}</p>
           <p>Dimensions: {product.specs.dimensions}</p>
         </div>
-        <div className="mt-4 flex justify-between items-center">
-          <span className="font-bold text-lg">€{product.price.toLocaleString()}</span>
-          <Button variant="default" size="sm">
+        <div className="mt-2 flex justify-between items-center">
+          <span className="font-bold text-sm">€{product.price.toLocaleString()}</span>
+          <Button variant="default" size="sm" className="text-xs px-2 py-1">
             Voir détails
           </Button>
         </div>
@@ -128,7 +128,7 @@ const ProductGrid = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
