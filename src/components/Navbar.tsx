@@ -17,7 +17,7 @@ const Navbar = () => {
           >
             <Menu className="h-6 w-6" />
           </Button>
-          <span className="text-xl font-bold">Diamants</span>
+          <span className="text-xl font-bold">votre sélection :</span>
         </div>
 
         <div className="flex items-center gap-4">
