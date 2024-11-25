@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import ProductGrid from '../components/ProductGrid';
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
