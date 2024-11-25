@@ -4,6 +4,12 @@ import { Button } from './ui/button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState('votre sélection :');
+
+  const handleMenuItemClick = (item: string) => {
+    setSelectedItem(item);
+    setIsMenuOpen(false);
+  };
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white border-b">
@@ -17,7 +23,7 @@ const Navbar = () => {
           >
             <Menu className="h-6 w-6" />
           </Button>
-          <span className="text-xl font-bold">votre sélection :</span>
+          <span className="text-xl font-bold">{selectedItem}</span>
         </div>
 
         <div className="flex items-center gap-4">
@@ -40,16 +46,32 @@ const Navbar = () => {
             </Button>
           </div>
           <nav className="space-y-4">
-            <a href="#" className="block py-2 hover:text-primary transition-colors">
+            <a 
+              href="#" 
+              className="block py-2 hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Diamants naturels")}
+            >
               Diamants naturels
             </a>
-            <a href="#" className="block py-2 hover:text-primary transition-colors">
+            <a 
+              href="#" 
+              className="block py-2 hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Diamants de synthèse")}
+            >
               Diamants de synthèse
             </a>
-            <a href="#" className="block py-2 hover:text-primary transition-colors">
+            <a 
+              href="#" 
+              className="block py-2 hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Pierres gemmes")}
+            >
               Pierres gemmes
             </a>
-            <a href="#" className="block py-2 hover:text-primary transition-colors">
+            <a 
+              href="#" 
+              className="block py-2 hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Mêlées naturels")}
+            >
               Mêlées naturels
             </a>
           </nav>
