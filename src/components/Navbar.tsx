@@ -34,7 +34,7 @@ const Navbar = () => {
       >
         <div className="p-4">
           <div className="flex justify-between items-center mb-6">
-            <span className="text-xl font-bold">Menu</span>
+            <span className="text-xl font-bold">Bagues</span>
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
               <X className="h-6 w-6" />
             </Button>

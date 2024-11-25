@@ -14,7 +14,7 @@ const Index = () => {
             <Button variant="outline">À une image</Button>
             <Button variant="outline">À une vidéo</Button>
             <Button variant="outline">Retournable</Button>
-            <Button variant="primary">EXPRESS</Button>
+            <Button variant="default">EXPRESS</Button>
           </div>
         </div>
         <ProductGrid />
