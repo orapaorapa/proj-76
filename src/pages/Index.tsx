@@ -13,8 +13,8 @@ const Index = () => {
       <main className="container mx-auto px-4 pt-20 pb-12">
         <div className="mb-4">
           <div className="flex items-center gap-4 mb-3">
-            <h1 className="text-lg font-medium">Diamants naturels</h1>
-            <div className="flex-1 max-w-xs flex items-center gap-2">
+            <span className="text-sm text-gray-600">Votre sélection :</span>
+            <div className="flex items-center gap-2">
               <span className="text-xs text-gray-600">Diamètre : {diameter[0].toFixed(1)} ct</span>
               <Slider
                 defaultValue={[1.0]}
@@ -23,10 +23,11 @@ const Index = () => {
                 step={0.1}
                 value={diameter}
                 onValueChange={setDiameter}
-                className="flex-1"
+                className="w-[200px]"
               />
             </div>
           </div>
+          <h1 className="text-lg font-medium mb-3">Diamants naturels</h1>
           <div className="flex gap-2 flex-wrap">
             <Button variant="outline" className="text-xs px-2 py-1 h-7">Prix</Button>
             <Button variant="outline" className="text-xs px-2 py-1 h-7">À une image</Button>
