@@ -13,7 +13,6 @@ const Index = () => {
       <main className="container mx-auto px-4 pt-20 pb-12">
         <div className="mb-4">
           <div className="flex items-center gap-4 mb-3">
-            <span className="text-sm text-gray-600">Votre sélection :</span>
             <div className="flex items-center gap-2">
               <span className="text-xs text-gray-600">Diamètre : {diameter[0].toFixed(1)} ct</span>
               <Slider
