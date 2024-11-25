@@ -33,8 +33,8 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
       </div>
       <div className="p-2">
-        <h3 className="font-semibold text-xs mb-1">{product.name}</h3>
-        <div className="text-xs text-gray-600 space-y-0.5">
+        <h3 className="font-semibold text-[10px] mb-1 text-left truncate">{product.name}</h3>
+        <div className="text-xs text-gray-600 space-y-0.5 text-left">
           <p>Clarté: {product.specs.clarity}</p>
           <p>Couleur: {product.specs.color}</p>
           <p>Taille: {product.specs.cut}</p>
@@ -51,7 +51,6 @@ const ProductCard = ({ product }: { product: Product }) => {
   );
 };
 
-const ProductGrid = () => {
   const products: Product[] = [
     {
       id: '1',
@@ -127,6 +126,7 @@ const ProductGrid = () => {
     }
   ];
 
+const ProductGrid = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
       {products.map((product) => (
