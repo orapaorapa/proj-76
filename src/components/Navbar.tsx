@@ -13,26 +13,25 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 bg-white border-b w-full">
-      <div className="max-w-[1280px] mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="max-w-[1280px] mx-auto px-4 h-14 flex items-center justify-between">
+        <div className="flex items-center gap-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="block"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-5 w-5" />
           </Button>
-          <span className="text-xl font-bold truncate">{selectedItem}</span>
+          <span className="text-sm font-medium truncate max-w-[180px]">{selectedItem}</span>
         </div>
 
-        <div className="flex items-center gap-4">
-          <Button variant="outline">€ EUR</Button>
-          <Button variant="default">Aide</Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="text-xs px-2 py-1 h-8">€ EUR</Button>
+          <Button variant="default" className="text-xs px-2 py-1 h-8">Aide</Button>
         </div>
       </div>
 
-      {/* Menu latéral */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : '-translate-x-full'
@@ -40,36 +39,36 @@ const Navbar = () => {
       >
         <div className="p-4">
           <div className="flex justify-between items-center mb-6">
-            <span className="text-xl font-bold">Bagues</span>
+            <span className="text-sm font-medium">Bagues</span>
             <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(false)}>
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5" />
             </Button>
           </div>
           <nav className="space-y-4">
             <a 
               href="#" 
-              className="block py-2 hover:text-primary transition-colors"
+              className="block py-2 text-sm hover:text-primary transition-colors"
               onClick={() => handleMenuItemClick("Diamants naturels")}
             >
               Diamants naturels
             </a>
             <a 
               href="#" 
-              className="block py-2 hover:text-primary transition-colors"
+              className="block py-2 text-sm hover:text-primary transition-colors"
               onClick={() => handleMenuItemClick("Diamants de synthèse")}
             >
               Diamants de synthèse
             </a>
             <a 
               href="#" 
-              className="block py-2 hover:text-primary transition-colors"
+              className="block py-2 text-sm hover:text-primary transition-colors"
               onClick={() => handleMenuItemClick("Pierres gemmes")}
             >
               Pierres gemmes
             </a>
             <a 
               href="#" 
-              className="block py-2 hover:text-primary transition-colors"
+              className="block py-2 text-sm hover:text-primary transition-colors"
               onClick={() => handleMenuItemClick("Mêlées naturels")}
             >
               Mêlées naturels
