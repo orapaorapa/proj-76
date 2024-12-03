@@ -23,12 +23,12 @@ const ProductCard = ({ product }: { product: Product }) => {
           <img
             src={product.image}
             alt={`${product.name} - Vue 1`}
-            className="w-full h-32 object-cover"
+            className="w-full h-40 object-cover"
           />
           <img
             src={product.image2 || product.image}
             alt={`${product.name} - Vue 2`}
-            className="w-full h-32 object-cover"
+            className="w-full h-40 object-cover"
           />
         </div>
         <div className="absolute top-2 right-2 space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
