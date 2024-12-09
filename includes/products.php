@@ -1,12 +1,39 @@
 <?php
-require_once 'config.php';
-
-try {
-    $stmt = $pdo->query('SELECT * FROM products');
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch(PDOException $e) {
-    die("Erreur lors de la récupération des produits : " . $e->getMessage());
-}
+$products = [
+    [
+        'id' => '1',
+        'name' => 'Round 1.01ct H VS1 EX EX EX Faint',
+        'image' => '/placeholder.svg',
+        'image2' => '/placeholder.svg',
+        'price' => 1916.43,
+        'clarity' => 'VS1',
+        'color' => 'H',
+        'cut' => 'Excellent',
+        'dimensions' => '6.51 × 3.97'
+    ],
+    [
+        'id' => '2',
+        'name' => 'Oval 1.50ct D IF EX EX None',
+        'image' => '/placeholder.svg',
+        'image2' => '/placeholder.svg',
+        'price' => 4250.00,
+        'clarity' => 'IF',
+        'color' => 'D',
+        'cut' => 'Excellent',
+        'dimensions' => '7.21 × 4.15'
+    ],
+    [
+        'id' => '3',
+        'name' => 'Princess 2.01ct G VS2 VG VG Faint',
+        'image' => '/placeholder.svg',
+        'image2' => '/placeholder.svg',
+        'price' => 3150.75,
+        'clarity' => 'VS2',
+        'color' => 'G',
+        'cut' => 'Very Good',
+        'dimensions' => '6.89 × 4.22'
+    ]
+];
 
 foreach ($products as $product): ?>
     <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
