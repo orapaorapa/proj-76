@@ -107,7 +107,7 @@ body {
     }
 }
 
-/* Other utility classes from Tailwind that we use */
+/* Other utility classes */
 .hidden {
     display: none;
 }
@@ -124,4 +124,38 @@ body {
     position: absolute;
 }
 
-/* ... autres classes utilitaires nécessaires */
+.min-h-screen {
+    min-height: 100vh;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.z-50 {
+    z-index: 50;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.space-x-4 > * + * {
+    margin-left: 1rem;
+}
+
+.text-gray-600 {
+    color: rgb(75, 85, 99);
+}
+
+.text-gray-900 {
+    color: rgb(17, 24, 39);
+}
+
+.hover\:text-gray-900:hover {
+    color: rgb(17, 24, 39);
+}
+
+.hover\:bg-gray-100:hover {
+    background-color: rgb(243, 244, 246);
+}
