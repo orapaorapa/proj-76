@@ -1,20 +1,12 @@
 <?php
-$products = [
-    [
-        'id' => '1',
-        'name' => 'Round 1.01ct H VS1 EX EX EX Faint',
-        'image' => '/placeholder.svg',
-        'image2' => '/placeholder.svg',
-        'price' => 1916.43,
-        'specs' => [
-            'clarity' => 'VS1',
-            'color' => 'H',
-            'cut' => 'Excellent',
-            'dimensions' => '6.51 × 3.97'
-        ]
-    ],
-    // ... autres produits identiques à ceux de ProductGrid.tsx
-];
+require_once 'config.php';
+
+try {
+    $stmt = $pdo->query('SELECT * FROM products');
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch(PDOException $e) {
+    die("Erreur lors de la récupération des produits : " . $e->getMessage());
+}
 
 foreach ($products as $product): ?>
     <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
@@ -49,10 +41,10 @@ foreach ($products as $product): ?>
         <div class="p-2">
             <h3 class="font-semibold text-[10px] mb-1 text-left truncate"><?php echo htmlspecialchars($product['name']); ?></h3>
             <div class="text-xs text-gray-600 space-y-0.5 text-left">
-                <p>Clarté: <?php echo htmlspecialchars($product['specs']['clarity']); ?></p>
-                <p>Couleur: <?php echo htmlspecialchars($product['specs']['color']); ?></p>
-                <p>Taille: <?php echo htmlspecialchars($product['specs']['cut']); ?></p>
-                <p>Dimensions: <?php echo htmlspecialchars($product['specs']['dimensions']); ?></p>
+                <p>Clarté: <?php echo htmlspecialchars($product['clarity']); ?></p>
+                <p>Couleur: <?php echo htmlspecialchars($product['color']); ?></p>
+                <p>Taille: <?php echo htmlspecialchars($product['cut']); ?></p>
+                <p>Dimensions: <?php echo htmlspecialchars($product['dimensions']); ?></p>
             </div>
             <div class="mt-2 flex justify-between items-center">
                 <span class="font-bold text-sm">€<?php echo number_format($product['price'], 2, ',', ' '); ?></span>
