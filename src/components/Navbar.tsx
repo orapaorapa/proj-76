@@ -48,30 +48,65 @@ const Navbar = () => {
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Diamants naturels")}
+              onClick={() => handleMenuItemClick("Bagues")}
             >
-              Diamants naturels
+              Bagues
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Diamants de synthèse")}
+              onClick={() => handleMenuItemClick("Alliances")}
             >
-              Diamants de synthèse
+              Alliances
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Pierres gemmes")}
+              onClick={() => handleMenuItemClick("Boucle_oreilles")}
             >
-              Pierres gemmes
+              Boucle oreilles
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Mêlées naturels")}
+              onClick={() => handleMenuItemClick("Bracelets")}
             >
-              Mêlées naturels
+              Bracelets
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Broche")}
+            >
+              Broche
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Colliers")}
+            >
+              Colliers
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Pendentifs")}
+            >
+              Pendentifs
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Piercings")}
+            >
+              Piercings
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Autres")}
+            >
+              Autres
             </a>
           </nav>
         </div>
