@@ -15,6 +15,7 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: rgb(249, 250, 251);
     color: rgb(17, 24, 39);
+    padding-top: 64px;
 }
 
 .container {
@@ -46,6 +47,7 @@ body {
 
 input[type="range"] {
     accent-color: var(--primary);
+    width: 200px;
 }
 
 .grid {

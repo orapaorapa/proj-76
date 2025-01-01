@@ -5,16 +5,28 @@ require_once 'includes/header.php';
 <main class="min-h-screen bg-gray-50 py-8">
     <div class="container mx-auto px-4">
         <div class="mb-6">
-            <div class="flex items-center gap-4 mb-4">
+            <div class="flex items-center gap-6 mb-4">
                 <div class="flex items-center gap-2">
-                    <span class="text-sm text-gray-600">Diamètre : <span id="diameter-value">1.0</span> ct</span>
+                    <span class="text-sm text-gray-600">Diamètre pierre principale. De : <span id="min-diameter-value">1.0</span></span>
                     <input 
                         type="range" 
-                        id="diameter-slider"
+                        id="min-diameter-slider"
                         min="0.1" 
-                        max="5.0" 
+                        max="200.0" 
                         step="0.1" 
                         value="1.0"
+                        class="w-48"
+                    >
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm text-gray-600">à : <span id="max-diameter-value">200.0</span></span>
+                    <input 
+                        type="range" 
+                        id="max-diameter-slider"
+                        min="0.1" 
+                        max="200.0" 
+                        step="0.1" 
+                        value="200.0"
                         class="w-48"
                     >
                 </div>
