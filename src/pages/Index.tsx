@@ -7,6 +7,11 @@ import { useState } from "react";
 const Index = () => {
   const [minDiameter, setMinDiameter] = useState([1.0]);
   const [maxDiameter, setMaxDiameter] = useState([200.0]);
+  const [headerText, setHeaderText] = useState("Diamants naturels");
+
+  const handleButtonClick = (text: string) => {
+    setHeaderText(text);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -39,13 +44,13 @@ const Index = () => {
               />
             </div>
           </div>
-          <h1 className="text-lg font-medium mb-3">Diamants naturels</h1>
+          <h1 className="text-lg font-medium mb-3">{headerText}</h1>
           <div className="flex gap-2 flex-wrap">
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">Prix</Button>
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">À une image</Button>
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">À une vidéo</Button>
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">Retournable</Button>
-            <Button variant="default" className="text-xs px-2 py-1 h-7">EXPRESS</Button>
+            <Button variant="outline" className="text-xs px-2 py-1 h-7" onClick={() => handleButtonClick("Prix")}>Prix</Button>
+            <Button variant="outline" className="text-xs px-2 py-1 h-7" onClick={() => handleButtonClick("À une image")}>À une image</Button>
+            <Button variant="outline" className="text-xs px-2 py-1 h-7" onClick={() => handleButtonClick("À une vidéo")}>À une vidéo</Button>
+            <Button variant="outline" className="text-xs px-2 py-1 h-7" onClick={() => handleButtonClick("Retournable")}>Retournable</Button>
+            <Button variant="default" className="text-xs px-2 py-1 h-7" onClick={() => handleButtonClick("EXPRESS")}>EXPRESS</Button>
           </div>
         </div>
         <ProductGrid />
