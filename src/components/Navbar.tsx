@@ -25,6 +25,11 @@ const Navbar = () => {
           </Button>
           <span className="text-sm font-medium truncate max-w-[180px]">{selectedItem}</span>
         </div>
+
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="text-xs px-2 py-1 h-8">€ EUR</Button>
+          <Button variant="default" className="text-xs px-2 py-1 h-8">Aide</Button>
+        </div>
       </div>
 
       <div
@@ -43,65 +48,30 @@ const Navbar = () => {
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Bagues")}
+              onClick={() => handleMenuItemClick("Diamants naturels")}
             >
-              Bagues
+              Diamants naturels
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Alliances")}
+              onClick={() => handleMenuItemClick("Diamants de synthèse")}
             >
-              Alliances
+              Diamants de synthèse
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Boucle_oreilles")}
+              onClick={() => handleMenuItemClick("Pierres gemmes")}
             >
-              Boucle oreilles
+              Pierres gemmes
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Bracelets")}
+              onClick={() => handleMenuItemClick("Mêlées naturels")}
             >
-              Bracelets
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Broche")}
-            >
-              Broche
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Colliers")}
-            >
-              Colliers
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Pendentifs")}
-            >
-              Pendentifs
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Piercings")}
-            >
-              Piercings
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Autres")}
-            >
-              Autres
+              Mêlées naturels
             </a>
           </nav>
         </div>
