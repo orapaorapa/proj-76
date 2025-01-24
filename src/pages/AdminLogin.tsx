@@ -14,6 +14,9 @@ const AdminLogin = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isLoading) return;
+    
     setIsLoading(true);
 
     try {
@@ -62,6 +65,7 @@ const AdminLogin = () => {
               onChange={(e) => setUsername(e.target.value)}
               required
               className="mt-1"
+              disabled={isLoading}
             />
           </div>
           <div>
@@ -75,6 +79,7 @@ const AdminLogin = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="mt-1"
+              disabled={isLoading}
             />
           </div>
           <Button
