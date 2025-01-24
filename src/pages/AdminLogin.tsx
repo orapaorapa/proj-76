@@ -5,10 +5,15 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { createClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL || '',
-  import.meta.env.VITE_SUPABASE_ANON_KEY || ''
-);
+// Initialize Supabase client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Supabase URL and Anon Key are required. Please connect to Supabase in the Lovable interface.');
+}
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
