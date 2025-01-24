@@ -3,8 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileText, Upload } from 'lucide-react';
+import { FileText, Upload, Download, Trash2, Edit } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const Admin = () => {
   const navigate = useNavigate();
@@ -12,6 +19,9 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [files, setFiles] = useState<any[]>([]);
   const { toast } = useToast();
+  const [selectedFile, setSelectedFile] = useState<any>(null);
+  const [fileContent, setFileContent] = useState<string>('');
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     checkUser();
@@ -67,6 +77,71 @@ const Admin = () => {
     }
   };
 
+  const handleFileDownload = async (file: any) => {
+    const { data, error } = await supabase
+      .storage
+      .from('files')
+      .download(file.name);
+
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Impossible de télécharger le fichier",
+      });
+      return;
+    }
+
+    const url = window.URL.createObjectURL(data);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = file.name;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
+  const handleFileDelete = async (file: any) => {
+    const { error } = await supabase
+      .storage
+      .from('files')
+      .remove([file.name]);
+
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Impossible de supprimer le fichier",
+      });
+    } else {
+      toast({
+        title: "Succès",
+        description: "Fichier supprimé avec succès",
+      });
+      fetchFiles();
+    }
+  };
+
+  const handleFileSelect = async (file: any) => {
+    setSelectedFile(file);
+    const { data, error } = await supabase
+      .storage
+      .from('files')
+      .download(file.name);
+
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Erreur",
+        description: "Impossible de charger le contenu du fichier",
+      });
+      return;
+    }
+
+    const text = await data.text();
+    setFileContent(text);
+    setIsEditing(true);
+  };
+
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate('/admin-login');
@@ -95,11 +170,36 @@ const Admin = () => {
           <TabsContent value="files">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {files.map((file) => (
-                <div key={file.id} className="bg-white p-4 rounded-lg shadow flex items-center gap-3">
-                  <FileText className="h-6 w-6 text-gray-500" />
-                  <div>
-                    <p className="font-medium">{file.name}</p>
-                    <p className="text-sm text-gray-500">{new Date(file.created_at).toLocaleDateString()}</p>
+                <div key={file.id} className="bg-white p-4 rounded-lg shadow">
+                  <div className="flex items-center gap-3 mb-3">
+                    <FileText className="h-6 w-6 text-gray-500" />
+                    <div>
+                      <p className="font-medium">{file.name}</p>
+                      <p className="text-sm text-gray-500">{new Date(file.created_at).toLocaleDateString()}</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 justify-end">
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleFileSelect(file)}
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleFileDownload(file)}
+                    >
+                      <Download className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      onClick={() => handleFileDelete(file)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -129,6 +229,24 @@ const Admin = () => {
             </div>
           </TabsContent>
         </Tabs>
+
+        <Sheet open={isEditing} onOpenChange={setIsEditing}>
+          <SheetContent size="default" className="w-[800px] sm:w-[800px]">
+            <SheetHeader>
+              <SheetTitle>{selectedFile?.name}</SheetTitle>
+              <SheetDescription>
+                Prévisualisation du fichier
+              </SheetDescription>
+            </SheetHeader>
+            <div className="mt-4">
+              <textarea
+                className="w-full h-[500px] font-mono text-sm p-4 border rounded"
+                value={fileContent}
+                readOnly
+              />
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </div>
   );
