@@ -12,19 +12,18 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isLoading) return;
     
     setIsLoading(true);
 
-    try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email: username,
-        password: password,
-      });
-
+    supabase.auth.signInWithPassword({
+      email: username,
+      password: password,
+    })
+    .then(({ error }) => {
       if (error) {
         toast({
           variant: "destructive",
@@ -38,15 +37,17 @@ const AdminLogin = () => {
         });
         navigate('/admin');
       }
-    } catch (error) {
+    })
+    .catch(() => {
       toast({
         variant: "destructive",
         title: "Erreur",
         description: "Une erreur est survenue",
       });
-    } finally {
+    })
+    .finally(() => {
       setIsLoading(false);
-    }
+    });
   };
 
   return (
