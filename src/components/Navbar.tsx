@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import { Menu, X, Settings } from 'lucide-react';
 import { Button } from './ui/button';
-import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('votre sélection :');
-  const navigate = useNavigate();
 
   const handleMenuItemClick = (item: string) => {
     setSelectedItem(item);
@@ -33,7 +31,6 @@ const Navbar = () => {
             variant="ghost" 
             size="icon"
             className="text-gray-600 hover:text-gray-900"
-            onClick={() => navigate('/admin-login')}
           >
             <Settings className="h-5 w-5" />
           </Button>

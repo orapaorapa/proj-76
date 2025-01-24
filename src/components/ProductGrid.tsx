@@ -1,7 +1,5 @@
 import { Heart, Share2 } from 'lucide-react';
 import { Button } from './ui/button';
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
 
 interface Product {
   id: string;
@@ -18,24 +16,6 @@ interface Product {
 }
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { toast } = useToast();
-
-  const handleAction = (action: 'like' | 'share') => {
-    if (isLoading) return;
-    
-    setIsLoading(true);
-    
-    // Simulate action without using navigator.locks
-    setTimeout(() => {
-      toast({
-        title: action === 'like' ? 'Ajouté aux favoris' : 'Partagé',
-        description: action === 'like' ? 'Le produit a été ajouté à vos favoris' : 'Le lien a été copié',
-      });
-      setIsLoading(false);
-    }, 500);
-  };
-
   return (
     <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
       <div className="relative group">
@@ -52,22 +32,10 @@ const ProductCard = ({ product }: { product: Product }) => {
           />
         </div>
         <div className="absolute top-2 right-2 space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button 
-            variant="secondary" 
-            size="icon" 
-            className="rounded-full w-8 h-8"
-            onClick={() => handleAction('like')}
-            disabled={isLoading}
-          >
+          <Button variant="secondary" size="icon" className="rounded-full w-8 h-8">
             <Heart className="h-3 w-3" />
           </Button>
-          <Button 
-            variant="secondary" 
-            size="icon" 
-            className="rounded-full w-8 h-8"
-            onClick={() => handleAction('share')}
-            disabled={isLoading}
-          >
+          <Button variant="secondary" size="icon" className="rounded-full w-8 h-8">
             <Share2 className="h-3 w-3" />
           </Button>
         </div>
