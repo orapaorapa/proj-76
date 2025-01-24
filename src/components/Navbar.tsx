@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Settings } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navbar = () => {
@@ -26,9 +26,14 @@ const Navbar = () => {
           <span className="text-sm font-medium truncate max-w-[180px]">{selectedItem}</span>
         </div>
 
-        <div className="flex items-center gap-2">
-          <Button variant="outline" className="text-xs px-2 py-1 h-8">€ EUR</Button>
-          <Button variant="default" className="text-xs px-2 py-1 h-8">Aide</Button>
+        <div className="flex items-center">
+          <Button 
+            variant="ghost" 
+            size="icon"
+            className="text-gray-600 hover:text-gray-900"
+          >
+            <Settings className="h-5 w-5" />
+          </Button>
         </div>
       </div>
 
