@@ -231,7 +231,7 @@ const Admin = () => {
         </Tabs>
 
         <Sheet open={isEditing} onOpenChange={setIsEditing}>
-          <SheetContent size="default" className="w-[800px] sm:w-[800px]">
+          <SheetContent className="w-[800px] sm:w-[800px]">
             <SheetHeader>
               <SheetTitle>{selectedFile?.name}</SheetTitle>
               <SheetDescription>
