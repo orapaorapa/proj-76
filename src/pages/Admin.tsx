@@ -9,14 +9,20 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
+
     const checkSession = async () => {
       try {
+        if (!isMounted) return;
+
         const { data: sessions, error } = await supabase
           .from("admin_sessions")
           .select("*")
           .gt("expires_at", new Date().toISOString())
           .order("created_at", { ascending: false })
           .limit(1);
+
+        if (!isMounted) return;
 
         if (error) {
           console.error("Erreur lors de la vérification de la session:", error);
@@ -31,12 +37,18 @@ const Admin = () => {
 
         setIsLoading(false);
       } catch (error) {
+        if (!isMounted) return;
         console.error("Erreur inattendue:", error);
         navigate("/admin/login");
       }
     };
 
-    checkSession();
+    // Petit délai pour s'assurer que le composant est bien monté
+    setTimeout(checkSession, 100);
+
+    return () => {
+      isMounted = false;
+    };
   }, [navigate]);
 
   if (isLoading) {
