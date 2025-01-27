@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      admin_sessions: {
+        Row: {
+          created_at: string | null
+          expires_at: string
+          id: string
+          last_activity: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          expires_at: string
+          id?: string
+          last_activity?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          expires_at?: string
+          id?: string
+          last_activity?: string | null
+        }
+        Relationships: []
+      }
       "TEST DIDIER": {
         Row: {
           created_at: string
