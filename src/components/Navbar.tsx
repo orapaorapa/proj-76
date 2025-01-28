@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Settings } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navbar = () => {
@@ -26,14 +26,9 @@ const Navbar = () => {
           <span className="text-sm font-medium truncate max-w-[180px]">{selectedItem}</span>
         </div>
 
-        <div className="flex items-center">
-          <Button 
-            variant="ghost" 
-            size="icon"
-            className="text-gray-600 hover:text-gray-900"
-          >
-            <Settings className="h-5 w-5" />
-          </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" className="text-xs px-2 py-1 h-8">€ EUR</Button>
+          <Button variant="default" className="text-xs px-2 py-1 h-8">Aide</Button>
         </div>
       </div>
 
@@ -53,30 +48,65 @@ const Navbar = () => {
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Diamants naturels")}
+              onClick={() => handleMenuItemClick("Bagues")}
             >
-              Diamants naturels
+              Bagues
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Diamants de synthèse")}
+              onClick={() => handleMenuItemClick("Alliances")}
             >
-              Diamants de synthèse
+              Alliances
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Pierres gemmes")}
+              onClick={() => handleMenuItemClick("Boucle_oreilles")}
             >
-              Pierres gemmes
+              Boucle oreilles
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Mêlées naturels")}
+              onClick={() => handleMenuItemClick("Bracelets")}
             >
-              Mêlées naturels
+              Bracelets
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Broche")}
+            >
+              Broche
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Colliers")}
+            >
+              Colliers
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Pendentifs")}
+            >
+              Pendentifs
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Piercings")}
+            >
+              Piercings
+            </a>
+            <a 
+              href="#" 
+              className="block py-2 text-sm hover:text-primary transition-colors"
+              onClick={() => handleMenuItemClick("Autres")}
+            >
+              Autres
             </a>
           </nav>
         </div>
