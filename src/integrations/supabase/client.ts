@@ -5,7 +5,15 @@ import type { Database } from './types';
 const SUPABASE_URL = "https://vegzfeyscdsisvnvnwtk.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlZ3pmZXlzY2RzaXN2bnZud3RrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3MzAwMjUsImV4cCI6MjA1MzMwNjAyNX0._1lW5S-RZn-0kbqbpEumObMFo7YwAyEmDTG-omscoLA";
 
-// Import the supabase client like this:
-// import { supabase } from "@/integrations/supabase/client";
+// Create a lazy-loaded singleton instance
+let supabaseInstance: ReturnType<typeof createClient<Database>> | null = null;
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+export const getSupabase = () => {
+  if (!supabaseInstance) {
+    supabaseInstance = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  }
+  return supabaseInstance;
+};
+
+// For backwards compatibility
+export const supabase = getSupabase();

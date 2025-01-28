@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/integrations/supabase/client";
 
 const ADMIN_USERNAME = "admin";
 const ADMIN_PASSWORD = "1234";
@@ -25,6 +25,7 @@ const AdminLogin = () => {
         const expiresAt = new Date();
         expiresAt.setSeconds(expiresAt.getSeconds() + SESSION_DURATION);
 
+        const supabase = getSupabase();
         const { error } = await supabase
           .from("admin_sessions")
           .insert([{ expires_at: expiresAt.toISOString() }]);

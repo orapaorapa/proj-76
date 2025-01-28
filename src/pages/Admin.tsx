@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/integrations/supabase/client";
 import FileBrowser from "@/components/FileBrowser";
 import { Loader2 } from "lucide-react";
 
@@ -15,6 +15,7 @@ const Admin = () => {
       try {
         if (!isMounted) return;
 
+        const supabase = getSupabase();
         const { data: sessions, error } = await supabase
           .from("admin_sessions")
           .select("*")
@@ -43,11 +44,12 @@ const Admin = () => {
       }
     };
 
-    // Petit délai pour s'assurer que le composant est bien monté
-    setTimeout(checkSession, 100);
+    // Small delay to ensure component is mounted
+    const timer = setTimeout(checkSession, 100);
 
     return () => {
       isMounted = false;
+      clearTimeout(timer);
     };
   }, [navigate]);
 
