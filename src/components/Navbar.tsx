@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Menu, X, Settings } from 'lucide-react';
 import { Button } from './ui/button';
-import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,15 +27,13 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center">
-          <Link to="/admin/login">
-            <Button 
-              variant="ghost" 
-              size="icon"
-              className="text-gray-600 hover:text-gray-900"
-            >
-              <Settings className="h-5 w-5" />
-            </Button>
-          </Link>
+          <Button 
+            variant="ghost" 
+            size="icon"
+            className="text-gray-600 hover:text-gray-900"
+          >
+            <Settings className="h-5 w-5" />
+          </Button>
         </div>
       </div>
 
