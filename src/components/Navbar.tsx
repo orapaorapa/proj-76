@@ -1,25 +1,10 @@
-
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('votre sélection :');
-  const [clientIP, setClientIP] = useState('Chargement...');
-
-  useEffect(() => {
-    // Fetch the client IP from our PHP endpoint
-    fetch('/get_ip.php')
-      .then(response => response.json())
-      .then(data => {
-        setClientIP(data.ip);
-      })
-      .catch(error => {
-        console.error('Erreur lors de la récupération de l\'IP:', error);
-        setClientIP('Erreur IP');
-      });
-  }, []);
 
   const handleMenuItemClick = (item: string) => {
     setSelectedItem(item);
@@ -42,8 +27,8 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-[10px] text-gray-500">{window.location.pathname}</span>
-          <Button variant="default" className="text-xs px-2 py-1 h-8">{clientIP}</Button>
+          <Button variant="outline" className="text-xs px-2 py-1 h-8">€ EUR</Button>
+          <Button variant="default" className="text-xs px-2 py-1 h-8">Aide</Button>
         </div>
       </div>
 
@@ -63,65 +48,30 @@ const Navbar = () => {
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Bagues")}
+              onClick={() => handleMenuItemClick("Diamants naturels")}
             >
-              Bagues
+              Diamants naturels
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Alliances")}
+              onClick={() => handleMenuItemClick("Diamants de synthèse")}
             >
-              Alliances
+              Diamants de synthèse
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Boucle_oreilles")}
+              onClick={() => handleMenuItemClick("Pierres gemmes")}
             >
-              Boucle oreilles
+              Pierres gemmes
             </a>
             <a 
               href="#" 
               className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Bracelets")}
+              onClick={() => handleMenuItemClick("Mêlées naturels")}
             >
-              Bracelets
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Broche")}
-            >
-              Broche
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Colliers")}
-            >
-              Colliers
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Pendentifs")}
-            >
-              Pendentifs
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Piercings")}
-            >
-              Piercings
-            </a>
-            <a 
-              href="#" 
-              className="block py-2 text-sm hover:text-primary transition-colors"
-              onClick={() => handleMenuItemClick("Autres")}
-            >
-              Autres
+              Mêlées naturels
             </a>
           </nav>
         </div>
