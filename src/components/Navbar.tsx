@@ -1,11 +1,25 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('votre sélection :');
+  const [clientIP, setClientIP] = useState('Chargement...');
+
+  useEffect(() => {
+    // Fetch the client IP from our PHP endpoint
+    fetch('/get_ip.php')
+      .then(response => response.json())
+      .then(data => {
+        setClientIP(data.ip);
+      })
+      .catch(error => {
+        console.error('Erreur lors de la récupération de l\'IP:', error);
+        setClientIP('Erreur IP');
+      });
+  }, []);
 
   const handleMenuItemClick = (item: string) => {
     setSelectedItem(item);
@@ -29,7 +43,7 @@ const Navbar = () => {
 
         <div className="flex items-center gap-2">
           <span className="text-[10px] text-gray-500">{window.location.pathname}</span>
-          <Button variant="default" className="text-xs px-2 py-1 h-8">Aide</Button>
+          <Button variant="default" className="text-xs px-2 py-1 h-8">{clientIP}</Button>
         </div>
       </div>
 
