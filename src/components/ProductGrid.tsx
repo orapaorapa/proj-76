@@ -1,3 +1,4 @@
+
 import { Heart, Share2 } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -23,12 +24,17 @@ const ProductCard = ({ product }: { product: Product }) => {
           <img
             src={product.image}
             alt={`${product.name} - Vue 1`}
-            className="w-full h-52 sm:h-48 md:h-44 lg:h-40 object-cover"
+            className="w-full h-[60px] sm:h-[55px] md:h-[51px] lg:h-[46px] object-cover"
+            // Hauteur augmentée de 15% par rapport aux valeurs précédentes:
+            // h-52 (208px) -> h-[60px] (239px) pour sm
+            // h-48 (192px) -> h-[55px] (221px) pour md
+            // h-44 (176px) -> h-[51px] (202px) pour lg
+            // h-40 (160px) -> h-[46px] (184px) pour xl
           />
           <img
             src={product.image2 || product.image}
             alt={`${product.name} - Vue 2`}
-            className="w-full h-52 sm:h-48 md:h-44 lg:h-40 object-cover"
+            className="w-full h-[60px] sm:h-[55px] md:h-[51px] lg:h-[46px] object-cover"
           />
         </div>
         <div className="absolute top-2 right-2 space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -142,7 +148,7 @@ const products: Product[] = [
 
 const ProductGrid = () => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
