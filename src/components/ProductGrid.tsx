@@ -278,12 +278,26 @@ const ProductGrid = () => {
           throw new Error(`Erreur HTTP: ${response.status}`);
         }
         const data = await response.json();
-        setProducts(data);
+        
+        // Filtrer les produits pour n'afficher que ceux avec un nom/description non vide
+        const filteredProducts = data.filter((product: Product) => 
+          product.name && product.name.trim() !== ""
+        );
+        
+        console.log(`Produits chargés: ${data.length}, Produits avec description: ${filteredProducts.length}`);
+        
+        setProducts(filteredProducts);
         setLoading(false);
       } catch (err) {
         console.error('Erreur lors du chargement des produits:', err);
         setError('Impossible de charger les produits. Utilisation des données de secours.');
-        setProducts(fallbackProducts);
+        
+        // Appliquer le même filtre aux produits de secours
+        const filteredFallbackProducts = fallbackProducts.filter(product => 
+          product.name && product.name.trim() !== ""
+        );
+        
+        setProducts(filteredFallbackProducts);
         setLoading(false);
       }
     };
