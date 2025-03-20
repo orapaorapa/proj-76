@@ -30,7 +30,7 @@ $prix[1] = "€1 916,43";
 $description[2] = "Oval 1.50ct D IF EX EX None";
 $clarte[2] = "IF";
 $couleur[2] = "D";
-$taille[2] = "Excellent";
+$taille[2] = "Excellent ZORRO";
 $dimensions[2] = "7.21 × 4.15";
 $prix[2] = "€4 250";
 
