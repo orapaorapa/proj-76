@@ -86,7 +86,7 @@ const fallbackProducts: Product[] = [
     name: 'Oval 1.50ct D IF EX EX None',
     image: '/placeholder.svg',
     image2: '/placeholder.svg',
-    price: 4250.00,
+    price: '€4 250,00',
     specs: {
       clarity: 'IF',
       color: 'D',
@@ -99,7 +99,7 @@ const fallbackProducts: Product[] = [
     name: 'Princess 2.01ct G VS2 VG VG Faint',
     image: '/placeholder.svg',
     image2: '/placeholder.svg',
-    price: 3150.75,
+    price: '€3 150,75',
     specs: {
       clarity: 'VS2',
       color: 'G',
@@ -112,7 +112,7 @@ const fallbackProducts: Product[] = [
     name: 'Pear 1.25ct E VVS1 EX EX None',
     image: '/placeholder.svg',
     image2: '/placeholder.svg',
-    price: 2890.60,
+    price: '€2 890,60',
     specs: {
       clarity: 'VVS1',
       color: 'E',
@@ -125,7 +125,7 @@ const fallbackProducts: Product[] = [
     name: 'Emerald 1.75ct F VS1 EX EX Faint',
     image: '/placeholder.svg',
     image2: '/placeholder.svg',
-    price: 3475.90,
+    price: '€3 475,90',
     specs: {
       clarity: 'VS1',
       color: 'F',
@@ -138,7 +138,7 @@ const fallbackProducts: Product[] = [
     name: 'Cushion 1.30ct I VVS2 VG EX None',
     image: '/placeholder.svg',
     image2: '/placeholder.svg',
-    price: 2250.30,
+    price: '€2 250,30',
     specs: {
       clarity: 'VVS2',
       color: 'I',
