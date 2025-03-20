@@ -1,13 +1,14 @@
 
 import { Heart, Share2 } from 'lucide-react';
 import { Button } from './ui/button';
+import { useEffect, useState } from 'react';
 
 interface Product {
   id: string;
   name: string;
   image: string;
   image2: string;
-  price: number;
+  price: string;
   specs: {
     clarity: string;
     color: string;
@@ -55,7 +56,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           <p>Dimensions: {product.specs.dimensions}</p>
         </div>
         <div className="mt-2 flex justify-between items-center">
-          <span className="font-bold text-sm">€{product.price.toLocaleString()}</span>
+          <span className="font-bold text-sm">{product.price}</span>
           <Button variant="default" size="sm" className="text-xs px-2 py-1">
             Voir détails
           </Button>
@@ -65,13 +66,14 @@ const ProductCard = ({ product }: { product: Product }) => {
   );
 };
 
-const products: Product[] = [
+// Produits de secours au cas où la requête PHP échoue
+const fallbackProducts: Product[] = [
   {
     id: '1',
     name: 'Round 1.01ct H VS1 EX EX EX Faint',
     image: '/placeholder.svg',
     image2: '/placeholder.svg',
-    price: 1916.43,
+    price: '€1 916,43',
     specs: {
       clarity: 'VS1',
       color: 'H',
@@ -147,6 +149,39 @@ const products: Product[] = [
 ];
 
 const ProductGrid = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/liste-produits.php');
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+        const data = await response.json();
+        setProducts(data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Erreur lors du chargement des produits:', err);
+        setError('Impossible de charger les produits. Utilisation des données de secours.');
+        setProducts(fallbackProducts);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-10">Chargement des produits...</div>;
+  }
+
+  if (error) {
+    console.warn(error);
+  }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-3">
       {products.map((product) => (
