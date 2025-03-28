@@ -1,14 +1,28 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 
-const Navbar = () => {
+interface NavbarProps {
+  refreshTrigger?: number;
+}
+
+const Navbar = ({ refreshTrigger = 0 }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('votre sélection :');
 
+  // Récupère la sélection sauvegardée au chargement initial et lors des rafraîchissements
+  useEffect(() => {
+    const savedSelection = localStorage.getItem('selectedMenuItem');
+    if (savedSelection) {
+      setSelectedItem(savedSelection);
+    }
+  }, [refreshTrigger]);
+
   const handleMenuItemClick = (item: string) => {
     setSelectedItem(item);
+    // Sauvegarde la sélection dans le localStorage
+    localStorage.setItem('selectedMenuItem', item);
     setIsMenuOpen(false);
   };
 
