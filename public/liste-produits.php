@@ -4,6 +4,9 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
+// Récupération de la sélection du menu hamburger passée en paramètre
+$alpha = isset($_GET['selection']) ? $_GET['selection'] : 'votre sélection :';
+
 // Tableau pour stocker les produits
 $products = [];
 
@@ -155,6 +158,12 @@ for ($i = 1; $i <= 15; $i++) {
     ];
 }
 
-// Retour des produits en format JSON
-echo json_encode($products);
+// Ajout de la sélection aux données de réponse
+$response = [
+    "selection" => $alpha,
+    "products" => $products
+];
+
+// Retour des produits et de la sélection en format JSON
+echo json_encode($response);
 ?>

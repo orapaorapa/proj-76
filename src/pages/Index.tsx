@@ -1,4 +1,3 @@
-
 import Navbar from '../components/Navbar';
 import ProductGrid from '../components/ProductGrid';
 import { Button } from "@/components/ui/button";
@@ -57,7 +56,7 @@ const Index = () => {
             </Button>
           </div>
         </div>
-        <ProductGrid key={refreshTrigger} />
+        <ProductGrid key={refreshTrigger} selection={localStorage.getItem('selectedMenuItem') || 'votre sélection :'} />
       </main>
     </div>
   );
