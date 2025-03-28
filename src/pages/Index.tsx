@@ -1,8 +1,10 @@
+
 import Navbar from '../components/Navbar';
 import ProductGrid from '../components/ProductGrid';
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useState } from "react";
+import { Filter } from "lucide-react";
 
 const Index = () => {
   const [diameter, setDiameter] = useState([1.0]);
@@ -28,11 +30,10 @@ const Index = () => {
           </div>
           <h1 className="text-lg font-medium mb-3">Diamants naturels</h1>
           <div className="flex gap-2 flex-wrap">
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">Prix</Button>
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">À une image</Button>
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">À une vidéo</Button>
-            <Button variant="outline" className="text-xs px-2 py-1 h-7">Retournable</Button>
-            <Button variant="default" className="text-xs px-2 py-1 h-7">EXPRESS</Button>
+            <Button variant="default" className="text-xs px-3 py-1 h-7 flex items-center gap-1">
+              <Filter className="h-3.5 w-3.5" />
+              Filtrer Familles
+            </Button>
           </div>
         </div>
         <ProductGrid />
