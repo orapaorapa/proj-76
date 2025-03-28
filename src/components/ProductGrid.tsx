@@ -2,6 +2,7 @@
 import { Heart, Share2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useEffect, useState } from 'react';
+import { fetchProducts } from '../services/productService';
 
 interface Product {
   id: string;
@@ -15,6 +16,10 @@ interface Product {
     cut: string;
     dimensions: string;
   };
+}
+
+interface ProductGridProps {
+  selection: string;
 }
 
 const ProductCard = ({ product }: { product: Product }) => {
@@ -265,26 +270,24 @@ const fallbackProducts: Product[] = [
   }
 ];
 
-const ProductGrid = () => {
+const ProductGrid = ({ selection }: ProductGridProps) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const loadProducts = async () => {
       try {
-        const response = await fetch('/liste-produits.php');
-        if (!response.ok) {
-          throw new Error(`Erreur HTTP: ${response.status}`);
-        }
-        const data = await response.json();
+        // Utilise le service pour récupérer les produits avec la sélection
+        const data = await fetchProducts(selection);
         
         // Filtrer les produits pour n'afficher que ceux avec un nom/description non vide
-        const filteredProducts = data.filter((product: Product) => 
+        const filteredProducts = data.products.filter((product: Product) => 
           product.name && product.name.trim() !== ""
         );
         
-        console.log(`Produits chargés: ${data.length}, Produits avec description: ${filteredProducts.length}`);
+        console.log(`Produits chargés: ${data.products.length}, Produits avec description: ${filteredProducts.length}`);
+        console.log(`Sélection reçue du serveur: ${data.selection}`);
         
         setProducts(filteredProducts);
         setLoading(false);
@@ -302,8 +305,8 @@ const ProductGrid = () => {
       }
     };
 
-    fetchProducts();
-  }, []);
+    loadProducts();
+  }, [selection]);
 
   if (loading) {
     return <div className="text-center py-10">Chargement des produits...</div>;
