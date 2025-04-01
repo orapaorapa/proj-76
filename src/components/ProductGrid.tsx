@@ -17,17 +17,25 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
         // Utilise le service pour récupérer les produits avec la sélection
         const data = await fetchProducts(selection);
         
-        // Filtrer les produits pour n'afficher que ceux avec un nom/description non vide
-        const filteredProducts = data.products.filter((product: Product) => 
-          product.name && product.name.trim() !== ""
-        );
-        
-        console.log(`Produits chargés: ${data.products.length}, Produits avec description: ${filteredProducts.length}`);
-        console.log(`Sélection reçue du serveur: ${data.selection}`);
-        
-        // Stocker la sélection retournée par le serveur
-        setServerSelection(data.selection);
-        setProducts(filteredProducts);
+        // Vérifier si les données sont bien formatées
+        if (data && data.products) {
+          console.log("Données reçues du serveur:", data);
+          
+          // Stocker la sélection retournée par le serveur
+          setServerSelection(data.selection);
+          
+          // Filtrer les produits pour n'afficher que ceux avec un nom/description non vide
+          const filteredProducts = data.products.filter((product: Product) => 
+            product.name && product.name.trim() !== ""
+          );
+          
+          console.log(`Produits chargés: ${data.products.length}, Produits avec description: ${filteredProducts.length}`);
+          console.log(`Sélection reçue du serveur: ${data.selection}`);
+          
+          setProducts(filteredProducts);
+        } else {
+          throw new Error("Format de données invalide");
+        }
         setLoading(false);
       } catch (err) {
         console.error('Erreur lors du chargement des produits:', err);
@@ -60,6 +68,7 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
       {serverSelection && (
         <div className="bg-blue-100 p-3 rounded-md text-blue-800 mb-4">
           <p className="font-medium">Sélection reçue du serveur: <span className="font-bold">{serverSelection}</span></p>
+          <p className="text-sm">Format des descriptions: <span className="font-bold">{products.length > 0 ? products[0].name : "Aucun produit"}</span></p>
         </div>
       )}
       
