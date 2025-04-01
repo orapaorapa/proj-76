@@ -22,7 +22,7 @@ for ($i = 1; $i <= 15; $i++) {
 }
 
 // Produit 1
-$description[1] = "Rond 1.09ct H VS1";
+$description[1] = "Rondggggg 1.09ct H VS1";
 $clarte[1] = "VS1";
 $couleur[1] = "H";
 $taille[1] = "Excellent";
