@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { fetchProducts } from '../services/productService';
 import { Product, ProductGridProps } from '../types/product';
-import { fallbackProducts } from '../utils/productUtils';
 import ProductCard from './ProductCard';
 import { toast } from '@/hooks/use-toast';
 
@@ -11,10 +10,15 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [serverSelection, setServerSelection] = useState<string | null>(null);
+  const [isUsingFallback, setIsUsingFallback] = useState(false);
 
   useEffect(() => {
     const loadProducts = async () => {
       try {
+        setLoading(true);
+        setError(null);
+        setIsUsingFallback(false);
+        
         // Utilise le service pour récupérer les produits avec la sélection
         const data = await fetchProducts(selection);
         
@@ -35,26 +39,34 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
           
           setProducts(filteredProducts);
           
-          // Notification pour informer l'utilisateur que nous utilisons des données simulées
-          toast({
-            title: "Information",
-            description: "Utilisation de données simulées avec votre sélection.",
-            variant: "default",
-          });
+          // Vérifier si on utilise les données de secours
+          if (data.products[0] && data.products[0].name.includes('[')) {
+            setIsUsingFallback(true);
+            toast({
+              title: "Information",
+              description: "Utilisation de données simulées. Le serveur PHP n'a pas pu être atteint.",
+              variant: "default",
+            });
+          } else {
+            toast({
+              title: "Succès",
+              description: "Données chargées depuis le serveur PHP avec succès.",
+              variant: "default",
+            });
+          }
         } else {
           throw new Error("Format de données invalide");
         }
-        setLoading(false);
       } catch (err) {
         console.error('Erreur lors du chargement des produits:', err);
-        setError('Impossible de charger les produits. Utilisation des données de secours.');
-        
-        // Appliquer le même filtre aux produits de secours
-        const filteredFallbackProducts = fallbackProducts.filter(product => 
-          product.name && product.name.trim() !== ""
-        );
-        
-        setProducts(filteredFallbackProducts);
+        setError('Impossible de charger les produits depuis le serveur PHP.');
+        setIsUsingFallback(true);
+        toast({
+          title: "Erreur",
+          description: "Impossible de charger les données depuis le serveur PHP. Utilisation des données de secours.",
+          variant: "destructive",
+        });
+      } finally {
         setLoading(false);
       }
     };
@@ -66,19 +78,30 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
     return <div className="text-center py-10">Chargement des produits...</div>;
   }
 
-  if (error) {
-    console.warn(error);
-  }
-
   return (
     <div className="space-y-4">
       {/* Affichage de la sélection reçue du serveur */}
       {serverSelection && (
-        <div className="bg-blue-100 p-3 rounded-md text-blue-800 mb-4">
-          <p className="font-medium">Sélection utilisée: <span className="font-bold">{serverSelection}</span></p>
+        <div className={`p-3 rounded-md mb-4 ${isUsingFallback ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'}`}>
+          <p className="font-medium">
+            Sélection utilisée: <span className="font-bold">{serverSelection}</span>
+          </p>
           {products.length > 0 && (
-            <p className="text-sm">Exemple de produit: <span className="font-bold">{products[0].name}</span></p>
+            <p className="text-sm">
+              Exemple de produit: <span className="font-bold">{products[0].name}</span>
+            </p>
           )}
+          {isUsingFallback && (
+            <p className="text-sm text-yellow-700 mt-1">
+              ⚠️ Utilisation des données de secours (le serveur PHP n'a pas pu être atteint)
+            </p>
+          )}
+        </div>
+      )}
+      
+      {error && (
+        <div className="bg-red-100 p-3 rounded-md text-red-800 mb-4">
+          <p className="font-medium">{error}</p>
         </div>
       )}
       
