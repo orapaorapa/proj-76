@@ -4,6 +4,7 @@ import { fetchProducts } from '../services/productService';
 import { Product, ProductGridProps } from '../types/product';
 import { fallbackProducts } from '../utils/productUtils';
 import ProductCard from './ProductCard';
+import { toast } from '@/hooks/use-toast';
 
 const ProductGrid = ({ selection }: ProductGridProps) => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,7 +20,7 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
         
         // Vérifier si les données sont bien formatées
         if (data && data.products) {
-          console.log("Données reçues du serveur:", data);
+          console.log("Données reçues:", data);
           
           // Stocker la sélection retournée par le serveur
           setServerSelection(data.selection);
@@ -30,9 +31,16 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
           );
           
           console.log(`Produits chargés: ${data.products.length}, Produits avec description: ${filteredProducts.length}`);
-          console.log(`Sélection reçue du serveur: ${data.selection}`);
+          console.log(`Sélection utilisée: ${data.selection}`);
           
           setProducts(filteredProducts);
+          
+          // Notification pour informer l'utilisateur que nous utilisons des données simulées
+          toast({
+            title: "Information",
+            description: "Utilisation de données simulées avec votre sélection.",
+            variant: "default",
+          });
         } else {
           throw new Error("Format de données invalide");
         }
@@ -67,8 +75,10 @@ const ProductGrid = ({ selection }: ProductGridProps) => {
       {/* Affichage de la sélection reçue du serveur */}
       {serverSelection && (
         <div className="bg-blue-100 p-3 rounded-md text-blue-800 mb-4">
-          <p className="font-medium">Sélection reçue du serveur: <span className="font-bold">{serverSelection}</span></p>
-          <p className="text-sm">Format des descriptions: <span className="font-bold">{products.length > 0 ? products[0].name : "Aucun produit"}</span></p>
+          <p className="font-medium">Sélection utilisée: <span className="font-bold">{serverSelection}</span></p>
+          {products.length > 0 && (
+            <p className="text-sm">Exemple de produit: <span className="font-bold">{products[0].name}</span></p>
+          )}
         </div>
       )}
       
