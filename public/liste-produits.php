@@ -7,6 +7,9 @@ header("Content-Type: application/json; charset=UTF-8");
 // Récupération de la sélection du menu hamburger passée en paramètre
 $alpha = isset($_GET['selection']) ? $_GET['selection'] : 'votre sélection :';
 
+// Stocker la valeur de sélection dans $selec comme demandé
+$selec = $alpha;
+
 // Tableau pour stocker les produits
 $products = [];
 
@@ -161,6 +164,7 @@ for ($i = 1; $i <= 15; $i++) {
 // Ajout de la sélection aux données de réponse
 $response = [
     "selection" => $alpha,
+    "selec" => $selec, // Ajout de la variable $selec à la réponse pour vérification
     "products" => $products
 ];
 
