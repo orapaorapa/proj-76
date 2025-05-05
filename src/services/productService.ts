@@ -1,32 +1,56 @@
 
 import { fallbackProducts } from '../utils/productUtils';
+import { executeSqlQuery } from './sqlService';
 
-// Service pour gérer les requêtes API liées aux produits
+// Service pour gérer les requêtes liées aux produits
 export const fetchProducts = async (selection: string = 'votre sélection :') => {
   try {
     console.log(`Fetching products with selection: ${selection}`);
     
-    // On passe la sélection actuelle comme paramètre de requête
-    const response = await fetch(`/liste-produits.php?selection=${encodeURIComponent(selection)}`);
+    // Construction de la requête SQL avec le paramètre de sélection
+    const sqlQuery = `
+      SELECT 
+        id, 
+        description, 
+        clarte, 
+        couleur, 
+        taille, 
+        dimensions, 
+        prix 
+      FROM produits 
+      WHERE categorie = '${selection.replace(/'/g, "''")}'
+      OR '${selection.replace(/'/g, "''")}' = 'votre sélection :'
+      LIMIT 15
+    `;
     
-    if (!response.ok) {
-      throw new Error('Erreur lors du chargement des produits');
+    // Exécution de la requête SQL
+    const result = await executeSqlQuery(sqlQuery);
+    
+    if (!result.success || !result.data) {
+      throw new Error(result.error || 'Erreur lors du chargement des produits');
     }
     
-    // Vérifier le type de contenu
-    const contentType = response.headers.get("content-type");
-    if (contentType && contentType.indexOf("application/json") === -1) {
-      console.error("La réponse n'est pas au format JSON:", contentType);
-      
-      // Afficher le contenu brut pour déboguer
-      const text = await response.text();
-      console.log("Contenu brut de la réponse:", text);
-      
-      throw new Error("La réponse n'est pas au format JSON");
-    }
+    // Transformation des données SQL en format produit attendu
+    const products = result.data.map((row: any) => ({
+      id: row.id.toString(),
+      name: row.description,
+      image: "/placeholder.svg",
+      image2: "/placeholder.svg",
+      price: row.prix,
+      specs: {
+        clarity: row.clarte,
+        color: row.couleur,
+        cut: row.taille,
+        dimensions: row.dimensions
+      }
+    }));
     
-    // Convertir la réponse en JSON
-    return await response.json();
+    // Renvoyer dans le format attendu
+    return {
+      selection: selection,
+      products: products,
+      count: products.length
+    };
     
   } catch (error) {
     console.error('Erreur:', error);
