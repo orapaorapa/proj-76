@@ -12,10 +12,10 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
       SELECT 
         id, 
         description, 
-        clarte, 
-        couleur, 
-        taille, 
-        dimensions, 
+        clarte AS poids_net, 
+        couleur AS type_metal, 
+        taille AS poids_prevu, 
+        dimensions AS diametre_principal, 
         prix 
       FROM produits 
       WHERE categorie = '${selection.replace(/'/g, "''")}'
@@ -38,10 +38,10 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
       image2: "/placeholder.svg",
       price: row.prix,
       specs: {
-        clarity: row.clarte,
-        color: row.couleur,
-        cut: row.taille,
-        dimensions: row.dimensions
+        poidsNet: row.poids_net,
+        typeMetal: row.type_metal,
+        poidsPrevu: row.poids_prevu,
+        diametrePrincipal: row.diametre_principal
       }
     }));
     

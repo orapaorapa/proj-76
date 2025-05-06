@@ -3,9 +3,9 @@
 export interface SqlProduct {
   id: string;
   description: string;
-  clarte: string;
-  couleur: string;
-  taille: string;
-  dimensions: string;
+  poids_net: string;
+  type_metal: string;
+  poids_prevu: string;
+  diametre_principal: string;
   prix: string;
 }

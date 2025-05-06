@@ -1,3 +1,4 @@
+
 import { Product } from "../types/product";
 
 // Produits de secours au cas où la requête PHP échoue
@@ -9,10 +10,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€1 916,43',
     specs: {
-      clarity: 'VS1',
-      color: 'H',
-      cut: 'Excellent',
-      dimensions: '6.51 × 3.97',
+      poidsNet: 'VS1',
+      typeMetal: 'H',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '6.51 × 3.97',
     },
   },
   {
@@ -22,10 +23,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€4 250,00',
     specs: {
-      clarity: 'IF',
-      color: 'D',
-      cut: 'Excellent',
-      dimensions: '7.21 × 4.15',
+      poidsNet: 'IF',
+      typeMetal: 'D',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '7.21 × 4.15',
     },
   },
   {
@@ -35,10 +36,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€3 150,75',
     specs: {
-      clarity: 'VS2',
-      color: 'G',
-      cut: 'Very Good',
-      dimensions: '6.89 × 4.22',
+      poidsNet: 'VS2',
+      typeMetal: 'G',
+      poidsPrevu: 'Very Good',
+      diametrePrincipal: '6.89 × 4.22',
     },
   },
   {
@@ -48,10 +49,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€2 890,60',
     specs: {
-      clarity: 'VVS1',
-      color: 'E',
-      cut: 'Excellent',
-      dimensions: '7.02 × 4.11',
+      poidsNet: 'VVS1',
+      typeMetal: 'E',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '7.02 × 4.11',
     },
   },
   {
@@ -61,10 +62,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€3 475,90',
     specs: {
-      clarity: 'VS1',
-      color: 'F',
-      cut: 'Excellent',
-      dimensions: '7.15 × 4.08',
+      poidsNet: 'VS1',
+      typeMetal: 'F',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '7.15 × 4.08',
     },
   },
   {
@@ -74,10 +75,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€2 250,30',
     specs: {
-      clarity: 'VVS2',
-      color: 'I',
-      cut: 'Very Good',
-      dimensions: '6.75 × 4.01',
+      poidsNet: 'VVS2',
+      typeMetal: 'I',
+      poidsPrevu: 'Very Good',
+      diametrePrincipal: '6.75 × 4.01',
     },
   },
   {
@@ -87,10 +88,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€1 780,50',
     specs: {
-      clarity: 'VS2',
-      color: 'F',
-      cut: 'Excellent',
-      dimensions: '6.20 × 3.80',
+      poidsNet: 'VS2',
+      typeMetal: 'F',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '6.20 × 3.80',
     },
   },
   {
@@ -100,10 +101,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€2 340,75',
     specs: {
-      clarity: 'VVS1',
-      color: 'G',
-      cut: 'Very Good',
-      dimensions: '9.80 × 5.10',
+      poidsNet: 'VVS1',
+      typeMetal: 'G',
+      poidsPrevu: 'Very Good',
+      diametrePrincipal: '9.80 × 5.10',
     },
   },
   {
@@ -113,10 +114,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€5 120,90',
     specs: {
-      clarity: 'VS1',
-      color: 'D',
-      cut: 'Excellent',
-      dimensions: '10.20 × 7.30',
+      poidsNet: 'VS1',
+      typeMetal: 'D',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '10.20 × 7.30',
     },
   },
   {
@@ -126,10 +127,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€2 790,30',
     specs: {
-      clarity: 'SI1',
-      color: 'H',
-      cut: 'Very Good',
-      dimensions: '7.35 × 4.45',
+      poidsNet: 'SI1',
+      typeMetal: 'H',
+      poidsPrevu: 'Very Good',
+      diametrePrincipal: '7.35 × 4.45',
     },
   },
   {
@@ -139,10 +140,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€3 980,25',
     specs: {
-      clarity: 'VS2',
-      color: 'F',
-      cut: 'Excellent',
-      dimensions: '7.00 × 7.00',
+      poidsNet: 'VS2',
+      typeMetal: 'F',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '7.00 × 7.00',
     },
   },
   {
@@ -152,10 +153,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€3 150,60',
     specs: {
-      clarity: 'VVS2',
-      color: 'E',
-      cut: 'Very Good',
-      dimensions: '7.90 × 5.80',
+      poidsNet: 'VVS2',
+      typeMetal: 'E',
+      poidsPrevu: 'Very Good',
+      diametrePrincipal: '7.90 × 5.80',
     },
   },
   {
@@ -165,10 +166,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€4 560,80',
     specs: {
-      clarity: 'VS1',
-      color: 'G',
-      cut: 'Excellent',
-      dimensions: '8.10 × 4.90',
+      poidsNet: 'VS1',
+      typeMetal: 'G',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '8.10 × 4.90',
     },
   },
   {
@@ -178,10 +179,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€5 980,40',
     specs: {
-      clarity: 'IF',
-      color: 'D',
-      cut: 'Excellent',
-      dimensions: '11.20 × 6.90',
+      poidsNet: 'IF',
+      typeMetal: 'D',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '11.20 × 6.90',
     },
   },
   {
@@ -191,10 +192,10 @@ export const fallbackProducts: Product[] = [
     image2: '/placeholder.svg',
     price: '€4 870,25',
     specs: {
-      clarity: 'VVS1',
-      color: 'F',
-      cut: 'Excellent',
-      dimensions: '8.30 × 6.70',
+      poidsNet: 'VVS1',
+      typeMetal: 'F',
+      poidsPrevu: 'Excellent',
+      diametrePrincipal: '8.30 × 6.70',
     },
   }
 ];

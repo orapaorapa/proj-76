@@ -36,10 +36,10 @@ const ProductCard = ({ product }: { product: Product }) => {
       <div className="p-2">
         <h3 className="font-semibold text-[10px] mb-1 text-left truncate">{product.name}</h3>
         <div className="text-xs text-gray-600 space-y-0.5 text-left">
-          <p>Clarté: {product.specs.clarity}</p>
-          <p>Couleur: {product.specs.color}</p>
-          <p>Taille: {product.specs.cut}</p>
-          <p>Dimensions: {product.specs.dimensions}</p>
+          <p>Poids net: {product.specs.poidsNet}</p>
+          <p>Type métal: {product.specs.typeMetal}</p>
+          <p>Poids prevu. si cpt pds: {product.specs.poidsPrevu}</p>
+          <p>Diamètre princip.: {product.specs.diametrePrincipal}</p>
         </div>
         <div className="mt-2 flex justify-between items-center">
           <span className="font-bold text-sm">{product.price}</span>
