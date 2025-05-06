@@ -3,14 +3,18 @@ import { fallbackProducts } from '../utils/productUtils';
 import { executeSqlQuery } from './sqlService';
 
 // Service pour gérer les requêtes liées aux produits
-export const fetchProducts = async (selection: string = 'votre sélection :') => {
+export const fetchProducts = async (selection: string = 'votre sélection :', page: number = 1, lastModelDisplayed: string = '') => {
   try {
-    console.log(`Fetching products with selection: ${selection}`);
+    console.log(`Fetching products with selection: ${selection}, page: ${page}, lastModel: ${lastModelDisplayed}`);
     
-    // Construction de la requête SQL avec le paramètre de sélection
-    const sqlQuery = `
+    // Nombre d'éléments par page
+    const itemsPerPage = 15;
+    
+    // Construction de la requête SQL avec les paramètres de sélection et pagination
+    let sqlQuery = `
       SELECT 
         id, 
+        reference AS code,
         description, 
         clarte AS poids_net, 
         couleur AS type_metal, 
@@ -19,9 +23,15 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
         prix 
       FROM produits 
       WHERE categorie = '${selection.replace(/'/g, "''")}'
-      OR '${selection.replace(/'/g, "''")}' = 'votre sélection :'
-      LIMIT 15
     `;
+    
+    // Si un dernier modèle est fourni, on commencera à partir de celui-ci
+    if (lastModelDisplayed && page > 1) {
+      sqlQuery += ` AND reference > '${lastModelDisplayed.replace(/'/g, "''")}'`;
+    }
+    
+    // Limiter le nombre de résultats
+    sqlQuery += ` ORDER BY reference ASC LIMIT ${itemsPerPage}`;
     
     // Exécution de la requête SQL
     const result = await executeSqlQuery(sqlQuery);
@@ -34,6 +44,7 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
     const products = result.data.map((row: any) => ({
       id: row.id.toString(),
       name: row.description,
+      code: row.code || "",
       image: "/placeholder.svg",
       image2: "/placeholder.svg",
       price: row.prix,
@@ -45,11 +56,16 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
       }
     }));
     
+    // Récupérer le dernier modèle affiché pour la pagination suivante
+    const lastDisplayedModel = products.length > 0 ? products[products.length - 1].code : "";
+    
     // Renvoyer dans le format attendu
     return {
       selection: selection,
       products: products,
-      count: products.length
+      count: products.length,
+      currentPage: page,
+      lastDisplayedModel: lastDisplayedModel
     };
     
   } catch (error) {
@@ -59,6 +75,7 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
     // En cas d'erreur, utiliser les données statiques de secours
     const products = fallbackProducts.map(product => ({
       ...product,
+      code: `BG${Math.floor(Math.random() * 10000)}`,
       // Inclure la sélection dans le nom du produit pour montrer que le paramètre est pris en compte
       name: `${product.name} [${selection}]`
     }));
@@ -67,7 +84,9 @@ export const fetchProducts = async (selection: string = 'votre sélection :') =>
     return {
       products: products,
       selection: selection,
-      count: products.length
+      count: products.length,
+      currentPage: page,
+      lastDisplayedModel: ""
     };
   }
 };

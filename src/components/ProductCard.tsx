@@ -12,11 +12,6 @@ const ProductCard = ({ product }: { product: Product }) => {
             src={product.image}
             alt={`${product.name} - Vue 1`}
             className="w-full h-60 sm:h-56 md:h-52 lg:h-48 object-cover"
-            // Hauteur augmentée de 15% par rapport aux valeurs d'origine:
-            // h-52 -> h-60 (augmentation de 15%)
-            // h-48 -> h-56 (augmentation de 15%)
-            // h-44 -> h-52 (augmentation de 15%)
-            // h-40 -> h-48 (augmentation de 15%)
           />
           <img
             src={product.image2 || product.image}
@@ -34,7 +29,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         </div>
       </div>
       <div className="p-2">
-        <h3 className="font-semibold text-[10px] mb-1 text-left truncate">{product.name}</h3>
+        <h3 className="font-semibold text-[10px] mb-1 text-left truncate">Code modèle : {product.code || product.name}</h3>
         <div className="text-xs text-gray-600 space-y-0.5 text-left">
           <p>Poids net: {product.specs.poidsNet}</p>
           <p>Type métal: {product.specs.typeMetal}</p>

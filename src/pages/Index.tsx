@@ -1,8 +1,9 @@
+
 import Navbar from '../components/Navbar';
 import ProductGrid from '../components/ProductGrid';
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Filter, RefreshCw } from "lucide-react";
 
 const Index = () => {

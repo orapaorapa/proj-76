@@ -2,6 +2,7 @@
 export interface Product {
   id: string;
   name: string;
+  code?: string;
   image: string;
   image2: string;
   price: string;
@@ -15,4 +16,6 @@ export interface Product {
 
 export interface ProductGridProps {
   selection: string;
+  page: number;
+  onPageChange: (page: number) => void;
 }
