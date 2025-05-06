@@ -25,7 +25,7 @@ export const executeSqlQuery = async (query: string): Promise<SqlResponse> => {
     });
     
     // Adresse du serveur MySQL legacy
-    const serverUrl = "http://192.168.1.187/execute-query.php";
+    const serverUrl = "http://192.168.1.187/cloud/st/execute-query.php";
     
     // Appel au serveur legacy
     const response = await fetch(`${serverUrl}?${params.toString()}`, {
