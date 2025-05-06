@@ -48,7 +48,7 @@ export const executeSqlQuery = async (query: string): Promise<SqlResponse> => {
     };
     
   } catch (error) {
-    console.error('Erreur lors de l\'exécution de la requête SQL:', error);
+    console.error('Erreur lors de lexec de  la requête SQL:', error);
     
     return {
       success: false,

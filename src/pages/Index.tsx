@@ -45,7 +45,7 @@ const Index = () => {
           <div className="flex gap-2 flex-wrap">
             <Button variant="default" className="text-xs px-3 py-1 h-7 flex items-center gap-1">
               <Filter className="h-3.5 w-3.5" />
-              Filtrer Familles
+              Filtrer Familles.
             </Button>
             <Button 
               variant="default" 
