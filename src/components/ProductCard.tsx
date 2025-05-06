@@ -41,11 +41,20 @@ const ProductCard = ({ product }: { product: Product }) => {
           <p>Poids prevu. si cpt pds: {product.specs.poidsPrevu}</p>
           <p>Diamètre princip.: {product.specs.diametrePrincipal}</p>
         </div>
-        <div className="mt-2 flex justify-between items-center">
-          <span className="font-bold text-sm">{product.price}</span>
-          <Button variant="default" size="sm" className="text-xs px-2 py-1">
-            Voir détails
-          </Button>
+        <div className="mt-2 flex flex-col gap-1">
+          <div className="flex justify-between items-center">
+            <span className="text-xs text-gray-600">Monture seule:</span>
+            <span className="font-bold text-sm">{product.price}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-xs text-gray-600">Monture Cpt poids:</span>
+            <span className="font-bold text-sm">{product.price}</span>
+          </div>
+          <div className="mt-1 flex justify-end">
+            <Button variant="default" size="sm" className="text-xs px-2 py-1">
+              Voir détails
+            </Button>
+          </div>
         </div>
       </div>
     </div>
